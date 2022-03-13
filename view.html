@@ -19,18 +19,16 @@
 	<input type="password" maxlength=30 id="pwd" name="pwd">
 	<input type="submit" value="Submit">
 	</form>
-
-	<table>
+	
 	<div class="grid_container">
 	% for row in table:
 		<div class="grid_row">
 			% for item in row:
 				<div class="grid_column">
 					{{item}}
-				</td>
+				</div>
 			% end
 		</div>
 	% end
-	</table>
 </body>
 </html>

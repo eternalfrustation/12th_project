@@ -1,0 +1,41 @@
+<html>
+	<head>
+		<title>
+			Shop Records
+		</title>
+	</head>
+	<body><center>
+		<H1>
+			Shop Inventory Manager
+		</H1>
+		<H2>
+			Welcome to Shop Inventory Manager
+		</H2>
+		<H3>
+			If you havent registered, please <a href="/signup">Signup here</a>
+		</H3>
+		<H3>
+			Or, Click here to <a href="/modify">here to modify records</a>
+		</H3>
+		
+		</center>
+		<form method="POST">
+		<label for="uname">Username</label>
+		<input type="text" maxlength=50 id="uname" name="uname">
+		<label for="pwd">Password</label>
+		<input type="password" maxlength=30 id="pwd" name="pwd">
+		<input type="submit" value="Submit">
+		</form>
+<div class="grid_container">
+    % for row in table:
+        <div class="grid_row">
+        % for item in row:
+            <div class="grid_column">
+            {{item}}
+            </td>
+        % end
+        </div>
+    % end
+</table>
+</body>
+</html>

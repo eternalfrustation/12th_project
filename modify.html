@@ -3,6 +3,83 @@
 		<title>
 			Shop Records
 		</title>
+		<script>
+		function view_submit() {
+			var xmlhttp = new XMLHttpRequest();
+			var contentDiv = document.getElementById("auth_form");
+
+			var uname = document.getElementById('uname').value;
+			var pwd = document.getElementById('pwd').value;
+			var table_element = document.getElementById('view_grid_container')
+			xmlhttp.open("POST", "/view_json", true);
+			xmlhttp.onreadystatechange = function() {
+				if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+					viewGrid = document.getElementById('view_grid_container');
+					table = JSON.parse(xmlhttp.responseText);
+					viewGrid.textContent = '';
+					for (var i = 0; i < table.length; i++) {
+						const row_node = document.createElement('div');
+						row_node.id = "table_row";
+						for (var j = 0; j < table[i].length; j++) {
+							const data_node = document.createElement('div');
+							data_node.appendChild(
+								document.createTextNode(table[i][j])
+							);
+							data_node.id = "table_data";
+							row_node.appendChild(data_node);
+						}
+						viewGrid.appendChild(row_node);
+						
+					}
+				}
+			}
+			xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded;");
+			xmlhttp.send('uname=' + encodeURIComponent(uname) + '&pwd=' + encodeURIComponent(pwd));
+
+		}
+		function mod_submit() {
+			var xmlhttp = new XMLHttpRequest();
+			var contentDiv = document.getElementById("command_form");
+
+			var uname = document.getElementById('uname').value;
+			var pwd = document.getElementById('pwd').value;
+			var command = document.querySelector('input[name="command"]:checked').value;
+			var item_name = document.getElementById('item_name').value;
+			var item_no = document.getElementById('item_no').value;
+			xmlhttp.open("POST", "/modify", true);
+			xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded;");
+			xmlhttp.send('uname=' + encodeURIComponent(uname)
+			+ '&pwd=' + encodeURIComponent(pwd)
+			+ '&command=' + encodeURIComponent(command)
+			+ '&item_name=' + encodeURIComponent(item_name)
+			+ '&item_no=' + encodeURIComponent(item_no));
+
+		}
+		function show_add() {
+			add_pair = document.getElementsByClassName('name_input');
+			add_pair[0].style.display = "block";
+			add_pair[1].style.display = "block";
+			del_pair = document.getElementsByClassName('number_input');
+			del_pair[0].style.display = "block";
+			del_pair[1].style.display = "block";
+		}
+		function show_del() {
+			add_pair = document.getElementsByClassName('name_input');
+			add_pair[0].style.display = "block";
+			add_pair[1].style.display = "block";
+			del_pair = document.getElementsByClassName('number_input');
+			del_pair[0].style.display = "none";
+			del_pair[1].style.display = "none";
+		}
+		function show_mod() {
+			add_pair = document.getElementsByClassName('name_input');
+			add_pair[0].style.display = "block";
+			add_pair[1].style.display = "block";
+			del_pair = document.getElementsByClassName('number_input');
+			del_pair[0].style.display = "block";
+			del_pair[1].style.display = "block";
+		}
+		</script>
 	</head>
 	<body><center>
 		<H1>
@@ -20,30 +97,33 @@
 		
 		</center>
 		
-		<form method="POST">
-		<label for="uname">Username</label>
-		<input type="text" maxlength=50 id="uname" name="uname">
-		<label for="pwd">Password</label>
-		<input type="password" maxlength=30 id="pwd" name="pwd">
-		<input type="submit" value="Submit">
+		<form method="POST" action="/view_json" id="auth_form">
+			<label for="uname">Username</label>
+			<input type="text" maxlength=50 id="uname" name="uname">
+			<label for="pwd">Password</label>
+			<input type="password" maxlength=30 id="pwd" name="pwd">
+			<input type="button" onclick="view_submit()" value="Submit">
 		</form>
-<div class="grid_container">
-	% i = 0
-    % for row in table:
-        <div class="grid_row">
-        % for item in row:
-            <div class="grid_column">
-            {{item}}
-            </div>
-        % end
-			<div>
-			<button class="edit" id="edit{{i}}">Edit Row</button>
+		<form method="POST" action="/view_json" id="command_form">
+			<label for="command">Command</label>
+			<div id="radio_container">
+				<label for="add_radio">Add</label>
+				<input type="radio" id="add_radio" onclick="show_add()" name="command" value="Add">
+				<label for="del_radio">Delete</label>
+				<input type="radio" id="del_radio" onclick="show_del()" name="command" value="Del">
+				<label for="mod_radio">Modify</label>
+				<input type="radio" id="mod_radio" onclick="show_mod()" name="command" value="Mod">
 			</div>
-			<div>
-			<button class="delete" id="delete{{i}}">Delete Row</button>
+			<div id="mod_section">
+				<label for="item_name" class="name_input" style="display:none">Item Name</label>
+				<input type="text" class="name_input" style="display:none" maxlength=50 name="item_name" id="item_name">
+				<label for="item_no" class="number_input" style="display:none">Number of items</label>
+				<input type="number" class="number_input" name="item_no" style="display:none" id="item_no">
 			</div>
-        </div>
-    % end
-</body>
+			<input type="button" onclick="mod_submit()" value="Submit">
+		</form>
+		<button onclick="view_submit()">Update</button>
+		<div id="view_grid_container">
+		</div>
 	</body>
 </html>

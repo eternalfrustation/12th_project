@@ -3,83 +3,9 @@
 		<title>
 			Shop Records
 		</title>
-		<script>
-		function view_submit() {
-			var xmlhttp = new XMLHttpRequest();
-			var contentDiv = document.getElementById("auth_form");
-
-			var uname = document.getElementById('uname').value;
-			var pwd = document.getElementById('pwd').value;
-			var table_element = document.getElementById('view_grid_container')
-			xmlhttp.open("POST", "/view_json", true);
-			xmlhttp.onreadystatechange = function() {
-				if (xmlhttp.readyState==4 && xmlhttp.status==200) {
-					viewGrid = document.getElementById('view_grid_container');
-					table = JSON.parse(xmlhttp.responseText);
-					viewGrid.textContent = '';
-					for (var i = 0; i < table.length; i++) {
-						const row_node = document.createElement('div');
-						row_node.id = "table_row";
-						for (var j = 0; j < table[i].length; j++) {
-							const data_node = document.createElement('div');
-							data_node.appendChild(
-								document.createTextNode(table[i][j])
-							);
-							data_node.id = "table_data";
-							row_node.appendChild(data_node);
-						}
-						viewGrid.appendChild(row_node);
-						
-					}
-				}
-			}
-			xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded;");
-			xmlhttp.send('uname=' + encodeURIComponent(uname) + '&pwd=' + encodeURIComponent(pwd));
-
-		}
-		function mod_submit() {
-			var xmlhttp = new XMLHttpRequest();
-			var contentDiv = document.getElementById("command_form");
-
-			var uname = document.getElementById('uname').value;
-			var pwd = document.getElementById('pwd').value;
-			var command = document.querySelector('input[name="command"]:checked').value;
-			var item_name = document.getElementById('item_name').value;
-			var item_no = document.getElementById('item_no').value;
-			xmlhttp.open("POST", "/modify", true);
-			xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded;");
-			xmlhttp.send('uname=' + encodeURIComponent(uname)
-			+ '&pwd=' + encodeURIComponent(pwd)
-			+ '&command=' + encodeURIComponent(command)
-			+ '&item_name=' + encodeURIComponent(item_name)
-			+ '&item_no=' + encodeURIComponent(item_no));
-
-		}
-		function show_add() {
-			add_pair = document.getElementsByClassName('name_input');
-			add_pair[0].style.display = "block";
-			add_pair[1].style.display = "block";
-			del_pair = document.getElementsByClassName('number_input');
-			del_pair[0].style.display = "block";
-			del_pair[1].style.display = "block";
-		}
-		function show_del() {
-			add_pair = document.getElementsByClassName('name_input');
-			add_pair[0].style.display = "block";
-			add_pair[1].style.display = "block";
-			del_pair = document.getElementsByClassName('number_input');
-			del_pair[0].style.display = "none";
-			del_pair[1].style.display = "none";
-		}
-		function show_mod() {
-			add_pair = document.getElementsByClassName('name_input');
-			add_pair[0].style.display = "block";
-			add_pair[1].style.display = "block";
-			del_pair = document.getElementsByClassName('number_input');
-			del_pair[0].style.display = "block";
-			del_pair[1].style.display = "block";
-		}
-		</script>
+		<link rel="stylesheet" href="static/css.css">
+		<script src="static/js.js"></script>
+		<link rel="icon" href="static/icon.ico">
 	</head>
 	<body><center>
 		<H1>
@@ -92,7 +18,7 @@
 			If you havent registered, please <a href="/signup">Signup here</a>
 		</H3>
 		<H3>
-			Or, <a href="/view">Click here to view records</a> and <a href="/modify">here to modify records</a>
+			Or, <a href="/view">Click here to view records</a>
 		</H3>
 		
 		</center>
@@ -102,8 +28,9 @@
 			<input type="text" maxlength=50 id="uname" name="uname">
 			<label for="pwd">Password</label>
 			<input type="password" maxlength=30 id="pwd" name="pwd">
-			<input type="button" onclick="view_submit()" value="Submit">
+			<input type="button" onclick="view_submit()" value="View">
 		</form>
+		<br>
 		<form method="POST" action="/view_json" id="command_form">
 			<label for="command">Command</label>
 			<div id="radio_container">
@@ -120,10 +47,11 @@
 				<label for="item_no" class="number_input" style="display:none">Number of items</label>
 				<input type="number" class="number_input" name="item_no" style="display:none" id="item_no">
 			</div>
-			<input type="button" onclick="mod_submit()" value="Submit">
+			<input type="button" onclick="mod_submit()" value="Modify">
+			<button onclick="view_submit()">Update</button>
 		</form>
-		<button onclick="view_submit()">Update</button>
-		<div id="view_grid_container">
-		</div>
+		<br><br><br>
+		<table id="view_grid_container">
+		</table>
 	</body>
 </html>

@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
+
+html {
+}
+:root {
+	--color-background: #282a36;
+	--color-foreground: #f8f8f2;
+	--color-background2: #44475a;
+	--color-foreground2: #6272a4;
+	--color-cyan: #8be9fd;
+	--color-green: #50fa7b;
+	--color-orange: #ffb86c;
+	--color-pink: #ff79c6;
+	--color-purple: #bd93f9;
+	--color-red: #ff5555;
+	--color-yellow: #f1fa8c;
+}
+body {
+  font-family: 'Roboto Slab',monospace;
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+}
+
+code {
+  font-family: Consolas,"courier new";
+  color: crimson;
+  background-color: var(--color-background2);
+  padding: 1px;
+}
+
+h1 {
+  font-family: 'Roboto Slab',serif;
+  color: var(--color-green);
+}
+
+h3,h2 {
+  font-family: 'Roboto Slab',serif;
+  color: var(--color-cyan);
+  margin: 8px;
+}
+
+h4,h5,h6 {
+  font-family: 'Roboto Slab',serif;
+}
+
+form {
+	display: grid;
+	width: 75%;
+	margin: auto;
+	grid-row-gap: 10%;
+	grid-template-columns: auto auto;
+}
+form label {
+	grid-column: 1;
+}
+
+form input {
+	grid-column: 2;
+	width: 40%;
+	margin: auto;
+}
+
+form div {
+	grid-column: 2;
+	width: 40%;
+	margin: auto;
+}
+
+form input[type="button"] {
+	grid-column-start: 1;
+	grid-column-end: 3;
+}
+
+form input[type="submit"] {
+	grid-column-start: 1;
+	grid-column-end: 3;
+}
+
+#radio_container {
+	display: grid;
+	width: 75%;
+	margin: auto;
+	grid-template-columns: auto auto;
+}
+
+#mod_section {
+	display: grid;
+	width: 75%;
+	margin: auto;
+	grid-row-gap: 5%;
+	grid-template-columns: auto auto;
+}
+#view_grid_container {
+	width: 75%;
+	margin: auto;
+}
+
+input {
+	background-color: var(--color-background2);
+	color: var(--color-orange);
+	border-style: solid;
+	border-width: 4px;
+	border-radius: 3px;
+	border-color: var(--color-green);
+}
+
+button {
+	background-color: var(--color-background2);
+	color: var(--color-orange);
+	grid-column-start: 1;
+	grid-column-end: 3;
+	width: 40%;
+	border-style: solid;
+	border-width: 4px;
+	border-radius: 3px;
+	border-color: var(--color-green);
+	margin: auto;
+}
+
+td {
+	text-align: center;
+}

@@ -3,7 +3,7 @@
 import os
 import sys
 import sqlite3 as sql
-from bottle import route, run, post, request, template
+from bottle import route, run, post, request, template, static_file, get
 import json
 
 
@@ -113,7 +113,17 @@ def view():
         return template(tpl, table=users_cursor.fetchall())
     else:
         return 'Incorrect Password <a href="/">Click here to go back</a>'
-
+       
+       
+       
+       
+@get('/static/:filename#.*#')
+def serve_static(filename):
+	return static_file(filename, root='static')
+    
+    
+    
+    
 @route('/')
 def default_page():
     if not file_names:

@@ -14,6 +14,8 @@ html {
 	--color-purple: #bd93f9;
 	--color-red: #ff5555;
 	--color-yellow: #f1fa8c;
+	--color-black: #6272a4;
+	--color-blue: #d6acff;
 }
 body {
   font-family: 'Roboto Slab',monospace;
@@ -66,24 +68,14 @@ form div {
 	margin: auto;
 }
 
-form input[type="button"] {
+form input[type="submit"], form input[type="button"] {
 	grid-column-start: 1;
 	grid-column-end: 3;
 }
-
-form input[type="submit"] {
-	grid-column-start: 1;
-	grid-column-end: 3;
+input[type="radio"] {
+	box-shadow: 0 0 black;
 }
-
-#radio_container {
-	display: grid;
-	width: 75%;
-	margin: auto;
-	grid-template-columns: auto auto;
-}
-
-#mod_section {
+#mod_section, #radio_container {
 	display: grid;
 	width: 75%;
 	margin: auto;
@@ -95,28 +87,51 @@ form input[type="submit"] {
 	margin: auto;
 }
 
-input {
+input, button {
 	background-color: var(--color-background2);
 	color: var(--color-orange);
 	border-style: solid;
 	border-width: 4px;
 	border-radius: 3px;
 	border-color: var(--color-green);
+	box-shadow: 0 0 10px 0px var(--color-green);
+	transition: border 0.5s, box-shadow 0.5s, color 0.5s, background-color 0.1s;
 }
-
+input:hover, button:hover {
+	color: var(--color-pink);
+	border-color: var(--color-cyan);
+	box-shadow: 0 0 10px 0px var(--color-cyan);
+}
+input:active, button:active {
+	color: var(--color-cyan);
+	border-color: var(--color-yellow);
+	box-shadow: 0 0 10px 0px var(--color-yellow);
+	background-color: var(--color-black);
+}
+input:focus, button:focus {
+	color: var(--color-cyan);
+	border-color: var(--color-yellow);
+	box-shadow: 0 0 10px 0px var(--color-yellow);
+	background-color: var(--color-black);
+}
 button {
-	background-color: var(--color-background2);
-	color: var(--color-orange);
 	grid-column-start: 1;
 	grid-column-end: 3;
 	width: 40%;
-	border-style: solid;
-	border-width: 4px;
-	border-radius: 3px;
-	border-color: var(--color-green);
 	margin: auto;
 }
 
 td {
 	text-align: center;
+}
+
+a {
+	text-decoration: none;
+	color: var(--color-blue);
+	transition: text-shadow 0.5s;
+}
+a:hover {
+	text-decoration: none;
+	color: var(--color-blue);
+	text-shadow: 0 0 20px var(--color-yellow);
 }

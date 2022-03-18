@@ -34,12 +34,17 @@
 		<form method="POST" action="/view_json" id="command_form">
 			<label for="command">Command</label>
 			<div id="radio_container">
-				<label for="add_radio">Add</label>
+				<label for="add_radio">
 				<input type="radio" id="add_radio" onclick="show_add()" name="command" value="Add">
-				<label for="del_radio">Delete</label>
+				Add
+				</label>
+				<label for="del_radio">
 				<input type="radio" id="del_radio" onclick="show_del()" name="command" value="Del">
-				<label for="mod_radio">Modify</label>
+				Delete
+				</label>
+				<label for="mod_radio">
 				<input type="radio" id="mod_radio" onclick="show_mod()" name="command" value="Mod">
+				Modify</label>
 			</div>
 			<div id="mod_section">
 				<label for="item_name" class="name_input" style="display:none">Item Name</label>

@@ -18,9 +18,14 @@ html {
 	--color-blue: #d6acff;
 }
 body {
-  font-family: 'Roboto Slab',monospace;
-  background-color: var(--color-background);
-  color: var(--color-foreground);
+	font-family: 'Roboto Slab',monospace;
+	background:
+		linear-gradient(135deg, hsl(231, 15%, 9%) 21px, var(--color-foreground2) 22px, var(--color-foreground2) 24px, transparent 24px, transparent 67px, var(--color-foreground2) 67px, var(--color-foreground2) 69px, transparent 69px),
+		linear-gradient(225deg, hsl(231, 15%, 9%) 21px, var(--color-foreground2) 22px, var(--color-foreground2) 24px, transparent 24px, transparent 67px, var(--color-foreground2) 67px, var(--color-foreground2) 69px, transparent 69px)0 64px;
+	background-color: hsl(231, 15%, 9%);
+	background-size: 64px 128px;
+	color: var(--color-foreground);
+	text-shadow: 0 0 20px #000000;
 }
 
 code {
@@ -91,7 +96,7 @@ input, button {
 	background-color: var(--color-background2);
 	color: var(--color-orange);
 	border-style: solid;
-	border-width: 4px;
+	border-width: 2px;
 	border-radius: 3px;
 	border-color: var(--color-green);
 	box-shadow: 0 0 10px 0px var(--color-green);
@@ -109,10 +114,11 @@ input:active, button:active {
 	background-color: var(--color-black);
 }
 input:focus, button:focus {
-	color: var(--color-cyan);
+	color: var(--color-foreground);
 	border-color: var(--color-yellow);
 	box-shadow: 0 0 10px 0px var(--color-yellow);
 	background-color: var(--color-black);
+	outline: none;
 }
 button {
 	grid-column-start: 1;
@@ -133,5 +139,5 @@ a {
 a:hover {
 	text-decoration: none;
 	color: var(--color-blue);
-	text-shadow: 0 0 20px var(--color-yellow);
+	text-shadow: 0 0 10px var(--color-yellow);
 }

@@ -4,6 +4,7 @@
 		Shop Records
 	</title>
 	<link rel="stylesheet" href="static/css.css">
+	<script src="static/js.js"></script>
 	<link rel="icon" href="static/icon.ico">
 </head>
 <body>
@@ -13,26 +14,18 @@
 	<H3>If you havent registered, please <a href="/signup">Signup here</a></H3>
 	<H3>Or, Click here to <a href="/modify">here to modify records</a></H3>
 	</center>
-	
-	<form method="POST">
+	<br>
+	<br>
+	<form method="POST" action="/view_json" id="auth_form">
 		<label for="uname">Username</label>
 		<input type="text" maxlength=50 id="uname" name="uname">
 		<label for="pwd">Password</label>
 		<input type="password" maxlength=30 id="pwd" name="pwd">
-		<input type="submit" value="Submit">
+		<br><br>
+		<input type="button" onclick="view_submit()" value="View">
 	</form>
 	<br><br>
 	<table id="view_grid_container">
-	<tr><th>Owner</th><th>Item Name</th><th>Number of Items</th></tr>
-	% for row in table:
-		<tr class="grid_row">
-			% for item in row:
-				<td class="grid_column">
-					{{item}}
-				</td>
-			% end
-		</tr>
-	% end
 	</table>
 </body>
 </html>
